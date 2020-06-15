@@ -1,0 +1,18 @@
+<div class="container" fxLayout="row wrap" fxLayout.xs="column wrap" fxLayoutAlign="center" fxLayoutGap="20px"
+    fxLayoutGap.xs="0">
+    <div class="cards" *ngFor=" let pizza of allTypePizzas">
+        <mat-card style="margin-top:10px;">
+            <mat-card-header>
+            </mat-card-header>
+            <img mat-card-image src="../assets/{{ pizza.imageUrl }}" alt="Photo of a Shiba Inu">
+            <mat-card-content>
+                <p class="bold-font">{{pizza.name}}</p>
+                <p>Price: {{pizza.price}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button (click)="onCustomize(pizza)" mat-raised-button color="primary"
+                    mat-button>Customize</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

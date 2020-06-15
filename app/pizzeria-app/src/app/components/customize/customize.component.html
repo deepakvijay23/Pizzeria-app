@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="cards">
+        <mat-card style="margin-top:10px;">
+            <mat-card-header>
+            </mat-card-header>
+            <img mat-card-image src="../assets/{{ pizza.imageUrl }}" alt="Photo of a Shiba Inu">
+            <mat-card-content>
+                <div fxLayout="column" fxLayout.xs="column wrap" fxLayoutAlign="center" fxLayoutGap="20px"
+                    fxLayoutGap.xs="0">
+
+                    <div>
+                        <div class="margin-bottom-10 bold-font">Select Size</div>
+                        <div>
+                            <mat-radio-group aria-labelledby="radio-group-size" (change)="onSizeChange($event)">
+                                <mat-radio-button *ngFor="let size of pizzaSizess" [checked]="size.checked"
+                                    [value]="size.value">
+                                    {{size.text}}
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+
+                    <div class="padding-top-10">
+                        <div class="margin-bottom-10 bold-font">Select Crust</div>
+                        <div>
+                            <mat-radio-group aria-labelledby="radio-group-crust" (change)="onCrustChange($event)">
+                                <mat-radio-button *ngFor="let crust of crusts" [checked]="crust.checked"
+                                    [value]="crust.itemId">
+                                    {{crust.name}}
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                    <div class="padding-top-10">
+                        <div class="bold-font">Add Veg Topping</div>
+                        <div>
+                            <mat-selection-list class="inline-list" #vegToppingList [(ngModel)]="selectedVegTopping"
+                                (ngModelChange)="onVegToppingsChange(vegToppingList.selectedOptions.selected)">
+                                <mat-list-option *ngFor="let vtp of vegToppings" [value]="vtp.itemId">
+                                    {{vtp.name}}
+                                </mat-list-option>
+                            </mat-selection-list>
+                        </div>
+                    </div>
+
+                    <div class="padding-top-10">
+                        <div class="bold-font"><b>Add Non-Veg Topping</b></div>
+                        <div>
+                            <mat-selection-list class="inline-list" #nonvegToppingList
+                                [(ngModel)]="selectedNonVegTopping"
+                                (ngModelChange)="onNonVegToppingsChange(nonvegToppingList.selectedOptions.selected)">
+                                <mat-list-option *ngFor="let vtp of nonvegToppings" [value]="vtp.itemId">
+                                    {{vtp.name}}
+                                </mat-list-option>
+                            </mat-selection-list>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <div fxLayout="row" fxLayoutAlign="space-around">
+                    <div fxFlex>Total: {{totalPrice}}</div>
+                    <div fxFlex> <button (click)="placeOrder()" mat-raised-button color="primary" mat-button>Place
+                            Order</button>
+                    </div>
+                </div>
+                <div style="color:green; font-weight: bold;" *ngIf="displayMessage">Order Placed. Please note order number {{ ordernum }}</div>
+            </mat-card-actions>
+        </mat-card>
+    </div>
